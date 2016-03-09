@@ -9,9 +9,7 @@ public class HelloWorld implements EchoService {
 	 * I initially forgot this, but a bean needs a constructor with no arguments,
 	 * otherwise you get a runtime exception when initialising the object.
 	 */
-	public HelloWorld () {
-		super();
-	}
+	public HelloWorld () {}
 
 	public HelloWorld (String message) {
 		this();
