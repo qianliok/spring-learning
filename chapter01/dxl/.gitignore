@@ -1,0 +1,7 @@
+eclipse
+*.war
+target
+.settings
+*.build
+*.log
+*.swp
