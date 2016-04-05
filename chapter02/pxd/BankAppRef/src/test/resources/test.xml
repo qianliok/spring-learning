@@ -1,0 +1,34 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="spring.training.controller" />
+
+<bean id="user" class="spring.training.model.User">
+		<property name="username" value="pxd"></property>
+		<property name="password" value="pxd"></property>
+		<property name="customerID" value="00000001"></property>
+		<property name="fullname" value="pxd"></property>
+
+	</bean>
+
+	<bean id="bankaccount01" class="spring.training.model.Account">
+		<property name="accountID" value="00000001"></property>
+		<property name="accountDescription" value="My first test account"></property>
+		<property name="user" ref="user"></property>
+		<property name="accountBalance" value="500"></property>
+	</bean>
+
+
+	<bean id="bankaccount02" class="spring.training.model.Account">
+		<property name="accountID" value="00000002"></property>
+		<property name="accountDescription" value="My test account 2"></property>
+		<property name="user" ref="user"></property>
+		<property name="accountBalance" value="2000"></property>
+	</bean>
+</beans>
