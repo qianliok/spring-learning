@@ -1,0 +1,51 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<context:component-scan base-package="spring.training.controller" />
+
+	<bean id="name" class="spring.training.model.Name">
+		<property name="name" value="jock"></property>
+	</bean>
+
+	<!-- Beans needed for testing BankService -->
+
+	<bean id="bankService" class="spring.training.services.BankService">
+	</bean>
+
+	<bean id="account_1" class="spring.training.model.Account">
+		<constructor-arg name="accountDescription" value="joe_p" />
+		<constructor-arg name="accountID" value="60000" />
+		<constructor-arg name="customerID" value="50000" />
+
+		<constructor-arg name="accountBalance">
+			<bean id="accBalance1" class="java.math.BigDecimal">
+				<constructor-arg value="50"></constructor-arg>
+			</bean>
+		</constructor-arg>
+
+		<constructor-arg name="accountMaxBalance">
+			<bean id="accMaxBalance1" class="java.math.BigDecimal">
+				<constructor-arg value="100"></constructor-arg>
+			</bean>
+		</constructor-arg>
+
+	</bean>
+
+	<bean id="user_1" class="spring.training.model.User" scope="prototype">
+		<constructor-arg name="username" value="joe_p" />
+		<constructor-arg name="customerID" value="50000" />
+		<constructor-arg name="password" value="super secret" />
+		<constructor-arg name="fullname" value="joe perry" />
+		<constructor-arg name="accounts">
+			<list value-type="spring.training.entity.Account">
+				<ref bean="account_1" />
+			</list>
+		</constructor-arg>
+	</bean>
+</beans>
