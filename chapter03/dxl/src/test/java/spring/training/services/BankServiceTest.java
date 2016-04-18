@@ -27,7 +27,7 @@ public class BankServiceTest {
 
 	@Test
 	public void testDebitOk() {
-		Account account = user.getAccounts()[0];
+		Account account = user.getAccounts().get(0);
 		assertEquals( "There should be no transaction when we start...", 0, account.getAccountTransactions().size());
 		assertEquals( "Debit: success!", TransactionStatus.SUCCESS, (bankService.debit( account, new BigDecimal( 10 )).getStatus()));
 		assertEquals( "Current balance: ok!", new BigDecimal( 40 ), account.getAccountBalance() );
@@ -37,13 +37,13 @@ public class BankServiceTest {
 
 	@Test
 	public void testCreditBad() {
-		Account account = user.getAccounts()[0];
+		Account account = user.getAccounts().get(0);
 		assertEquals(TransactionStatus.FAILURE, (bankService.credit( account, new BigDecimal( 150 )).getStatus()));
 	}
 
 	@Test
 	public void testDebitBad() {
-		Account account = user.getAccounts()[0];
+		Account account = user.getAccounts().get(0);
 		assertEquals(TransactionStatus.FAILURE, (bankService.debit( account, new BigDecimal( 150 )).getStatus()));
 	}
 

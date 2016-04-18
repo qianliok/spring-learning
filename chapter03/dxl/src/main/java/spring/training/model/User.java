@@ -1,5 +1,7 @@
 package spring.training.model;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -9,9 +11,9 @@ public class User {
 	private String username;
 	private String password;
 	private String fullname;
-	private Account[] accounts;
+	private List<Account> accounts;
 
-	public User( String username, Long customerID, String password, String fullname, Account[] accounts ) {
+	public User( String username, Long customerID, String password, String fullname, List<Account> accounts ) {
 		super();
 		this.username = username;
 		this.customerID = customerID;
@@ -61,13 +63,15 @@ public class User {
 	}
 
 
-	public Account[] getAccounts() {
+	public List<Account> getAccounts() {
 		return accounts;
 	}
 
 
-	public void setAccounts( Account[] accounts ) {
+	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
+
+
 
 }

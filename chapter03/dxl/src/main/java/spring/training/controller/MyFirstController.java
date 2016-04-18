@@ -10,29 +10,29 @@ import spring.training.model.Name;
 @Controller
 public class MyFirstController {
 	private String message = "Hello ";
-	
+
 	public String getMessage() {
 		return message;
 	}
 
-	
+
 	public void setMessage( String message ) {
 		this.message = message;
 	}
 
-	
+
 	public Name getName() {
 		return name;
 	}
 
-	
+
 	public void setName( Name name ) {
 		this.name = name;
 	}
 
 	@Autowired
-	private Name name = new Name("joe");
-	 
+	Name name;
+
 	@RequestMapping("/hello")
 	public ModelAndView showMessage() {
 		ModelAndView mv = new ModelAndView("hello");
