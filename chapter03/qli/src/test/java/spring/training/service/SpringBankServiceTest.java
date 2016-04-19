@@ -49,8 +49,8 @@ public class SpringBankServiceTest {
 		assertNotNull(acc00000001);
 		assertNotNull(acc00000002);
 
-		qli.addAcount(acc00000001);
-		qli.addAcount(acc00000002);
+//		qli.addAcount(acc00000001);
+//		qli.addAcount(acc00000002);
 	}
 
 	@After

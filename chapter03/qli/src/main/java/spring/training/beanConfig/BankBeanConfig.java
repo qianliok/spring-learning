@@ -13,30 +13,36 @@ public class BankBeanConfig {
 	@Bean
 	public User testuser() {
 		return new User().setUsername("testuser")
-						.setPassword("testuser");
+				.setPassword("testuser");
 	}
 
 	@Bean
 	public Customer qli() {
 		return new Customer().setCustomerID("12345678")
-							.setName("Qian Li")
-							.setUser(testuser());
+					.setName("Qian Li")
+					.setUser(testuser());
 	}
 
 	@Bean
 	public Account acc00000001() {
-		return new Account().setAccountNumber(00000001)
-							.setAccountDescription("test account 1")
-							.setAccountAmount(1000)
-							.setCustomer(qli());
+		Customer customer = qli();
+		Account acc = new Account().setAccountNumber(00000001)
+					.setAccountDescription("test account 1")
+					.setAccountAmount(1000)
+					.setCustomer(customer);
+		customer.addAcount(acc);
+		return acc;
 	}
 
 	@Bean
 	public Account acc00000002() {
-		return new Account().setAccountNumber(00000002)
-							.setAccountDescription("test account 2")
-							.setAccountAmount(100)
-							.setCustomer(qli());
+		Customer customer = qli();
+		Account acc = new Account().setAccountNumber(00000002)
+					.setAccountDescription("test account 2")
+					.setAccountAmount(100)
+					.setCustomer(customer);
+		customer.addAcount(acc);
+		return acc;
 	}
 
 }
