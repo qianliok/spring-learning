@@ -5,8 +5,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
-import java.util.HashMap;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +19,7 @@ import spring.training.model.Customer;
 import spring.training.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { "classpath:*test.xml" })
+@ContextConfiguration(locations = { "classpath:test.xml" })
 public class SpringBankServiceTest {
 
 	@Autowired
@@ -51,8 +49,8 @@ public class SpringBankServiceTest {
 		assertNotNull(acc00000001);
 		assertNotNull(acc00000002);
 
-		qli.addAcount(acc00000001);
-		qli.addAcount(acc00000002);
+//		qli.addAcount(acc00000001);
+//		qli.addAcount(acc00000002);
 	}
 
 	@After

@@ -7,40 +7,8 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<context:component-scan base-package="spring.training.controller" />
+	<context:component-scan base-package="spring.training.beanConfig" />
 	
 	<bean id="service" class="spring.training.service.SpringBankService" />
-
-	<bean id="name" class="spring.training.model.Name">
-		<property name="name" value="jock"></property>
-	</bean>
-
-	<bean id="testuser" class="spring.training.model.User">
-		<property name="username" value="testuser"></property>
-		<property name="password" value="testuser"></property>
-	</bean>
-
-	<bean id="qli" class="spring.training.model.Customer">
-		<property name="username" value="qli"></property>
-		<property name="password" value="qli"></property>
-		<property name="customerID" value="12345678"></property>
-		<property name="name" value="Qian Li"></property>
-		
-	</bean>
-
-	<bean id="acc00000001" class="spring.training.model.Account">
-		<property name="accountNumber" value="00000001"></property>
-		<property name="accountDescription" value="test account 1"></property>
-		<property name="customer" ref="qli"></property>
-		<property name="accountAmount" value="1000"></property>
-	</bean>
-
-
-	<bean id="acc00000002" class="spring.training.model.Account">
-		<property name="accountNumber" value="00000002"></property>
-		<property name="accountDescription" value="test account 2"></property>
-		<property name="customer" ref="qli"></property>
-		<property name="accountAmount" value="100"></property>
-	</bean>
 
 </beans>
