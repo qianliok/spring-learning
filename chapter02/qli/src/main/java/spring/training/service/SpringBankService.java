@@ -1,9 +1,12 @@
 package spring.training.service;
 
+import org.springframework.stereotype.Service;
+
 import spring.training.model.Account;
 import spring.training.model.AccountTranscation;
 import spring.training.model.User;
 
+@Service
 public class SpringBankService implements BankService {
 
 	@Override

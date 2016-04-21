@@ -12,29 +12,39 @@ public class Customer extends User {
 		return customerID;
 	}
 
-	public void setCustomerID(String customerID) {
+	public Customer setCustomerID(String customerID) {
 		this.customerID = customerID;
+		return this;
 	}
 
 	public String getName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public Customer setName(String name) {
 		this.name = name;
+		return this;
 	}
 
 	public Map<Integer, Account> getAccounts() {
 		return accounts;
 	}
 
-	public void setAccounts(Map<Integer, Account> accounts) {
+	public Customer setAccounts(Map<Integer, Account> accounts) {
 		this.accounts = accounts;
+		return this;
 	}
 
-	public void addAcount(Account account) {		
+	public Customer addAcount(Account account) {		
 		if (account != null && accounts.get(account.getAccountNumber()) == null) {
 			accounts.put(account.getAccountNumber(), account);
 		}
+		return this;
+	}
+	
+	public Customer setUser(User user){
+		this.setUsername(user.getUsername());
+		this.setPassword(user.getPassword());
+		return this;
 	}
 }

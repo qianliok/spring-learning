@@ -18,32 +18,36 @@ public class Account {
 		return accountNumber;
 	}
 
-	public void setAccountNumber(int accountNumber) {
+	public Account setAccountNumber(int accountNumber) {
 		this.accountNumber = accountNumber;
+		return this;
 	}
 
 	public String getAccountDescription() {
 		return accountDescription;
 	}
 
-	public void setAccountDescription(String accountDescription) {
+	public Account setAccountDescription(String accountDescription) {
 		this.accountDescription = accountDescription;
+		return this;
 	}
 
 	public double getAccountAmount() {
 		return accountAmount;
 	}
 
-	public void setAccountAmount(double accountAmount) {
+	public Account setAccountAmount(double accountAmount) {
 		this.accountAmount = accountAmount;
+		return this;
 	}
 
 	public Customer getCustomer() {
 		return customer;
 	}
 
-	public void setCustomer(Customer customer) {
+	public Account setCustomer(Customer customer) {
 		this.customer = customer;
+		return this;
 	}
 
 	public List<AccountTranscation> getTransactions() {
