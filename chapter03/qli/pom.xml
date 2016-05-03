@@ -9,7 +9,7 @@
 	<url>http://maven.apache.org</url>
 
 	<properties>
-		<spring.version>4.2.5.RELEASE</spring.version>
+		<spring.version>3.2.16.RELEASE</spring.version>
 		<jdk.version>1.8</jdk.version>
 	</properties>
 
@@ -47,6 +47,12 @@
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
 		</dependency>
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-aspects</artifactId>
+		    <version>${spring.version}</version>
+		</dependency>
+				
 	</dependencies>
 	<build>
 		<finalName>BankApp</finalName>
