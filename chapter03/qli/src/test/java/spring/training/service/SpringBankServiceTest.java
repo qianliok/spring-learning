@@ -11,6 +11,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -20,10 +22,14 @@ import spring.training.model.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { "classpath:test.xml" })
+@DirtiesContext(classMode = ClassMode.AFTER_EACH_TEST_METHOD)
 public class SpringBankServiceTest {
 
 	@Autowired
+	@Qualifier("service")
 	SpringBankService service;
+	
+	
 
 	@Autowired
 	@Qualifier("testuser")
@@ -48,16 +54,8 @@ public class SpringBankServiceTest {
 		assertNotNull(qli);
 		assertNotNull(acc00000001);
 		assertNotNull(acc00000002);
-
-//		qli.addAcount(acc00000001);
-//		qli.addAcount(acc00000002);
 	}
 
-	@After
-	public void reset() {
-		acc00000001.setAccountAmount(1000);
-		acc00000002.setAccountAmount(100);
-	}
 
 	@Test
 	public void debitTest() {
