@@ -19,6 +19,13 @@ public class BankServiceTest {
 	@Autowired
     private ApplicationContext context;
 	
+	@Test 
+	public void canHoldScope(){
+		Account account1 = (Account)context.getBean("fromAccount");
+		Account account2 = (Account)context.getBean("fromAccount");
+		Assert.assertEquals(account1.hashCode(), account2.hashCode());
+	}
+	
 	@Test
 	public void canCreditAmount() {
 		BankService bank = (BankService)context.getBean("bank");
@@ -61,4 +68,11 @@ public class BankServiceTest {
 		bank.debit(new AccountTransaction(account, null, amount+1, Calendar.getInstance()));
 	}
 
+	@Test
+	public void canAuditBank() {
+		Counter counter = (Counter)context.getBean("auditCounter");
+		int start = counter.getCount();
+		this.canDeditAmount();
+		Assert.assertEquals((start+1), counter.getCount());
+	}
 }

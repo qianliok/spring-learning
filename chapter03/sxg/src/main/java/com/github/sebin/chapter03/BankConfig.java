@@ -14,6 +14,16 @@ import com.github.sebin.chapter03.service.impl.XBank;
 public class BankConfig {
 
 	@Bean
+	public Audit audit() {
+		return new Audit();
+	}
+	
+	@Bean
+	public Counter auditCounter(){
+		return new Counter();
+	}
+	
+	@Bean
 	public User user() {
 		return new User(1, "xbxlnv5", "123456", "My Name");
 	}
@@ -34,7 +44,8 @@ public class BankConfig {
 		Set<Account> accounts = new HashSet<Account>();
 		accounts.add(fromAccount());
 		accounts.add(toAccount());
-		return new XBank(accounts );
-	}
-	
+		XBank bank = new XBank();
+		bank.setAccounts(accounts);
+		return bank;
+	}	
 }

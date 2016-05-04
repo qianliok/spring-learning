@@ -13,10 +13,9 @@ public class XBank implements BankService {
 	
 
 	/**
-	 * @param accounts
+	 * @param accounts the accounts to set
 	 */
-	public XBank(Set<Account> accounts) {
-		super();
+	public void setAccounts(Set<Account> accounts) {
 		this.accounts = accounts;
 	}
 
