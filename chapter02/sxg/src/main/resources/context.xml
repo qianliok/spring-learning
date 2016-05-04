@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+                       http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<bean id="user" class="com.github.sebin.chapter02.User">
+		<constructor-arg name="customerID" value="1" />
+		<constructor-arg name="username" value="xbblnv7" />
+		<constructor-arg name="password" value="123456" />
+		<constructor-arg name="fullname" value="My Name" />
+	</bean>
+	<bean id="account" class="com.github.sebin.chapter02.Account">
+		<constructor-arg name="accountID" value="1" />
+		<constructor-arg name="customer" ref="user" />
+		<constructor-arg name="accountDescription" value="Testing accont" />
+		<constructor-arg name="accountBalance" value="10" />
+		<constructor-arg name="accountMaxBalance" value="10000" />
+	</bean>
+	
+	<bean id="bank" class="com.github.sebin.chapter02.service.impl.XBank">
+		<constructor-arg>
+			<set>
+				<ref bean="account" />
+			</set>
+		</constructor-arg>
+	</bean>
+
+</beans>
