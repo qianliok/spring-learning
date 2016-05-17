@@ -51,6 +51,9 @@ public class BankController {
 		Account toAccount = accountService.getAccount( to );
 		ModelAndView mv = new ModelAndView( "credit" );
 		try {
+			if(fromAccount == null || toAccount == null ) {
+				throw new BankException( "Accounts not valid" );
+			}
 			bankService.debit( fromAccount, amount );
 			bankService.credit( toAccount, amount );
 		}
