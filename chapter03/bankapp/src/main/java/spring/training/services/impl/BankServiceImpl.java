@@ -31,7 +31,7 @@ public class BankServiceImpl implements BankService {
 			toAccount.addTransaction( new AccountTransaction( null, toAccount.getAccountID(), amount.negate(), getTime() ) );
 			success = true;
 		} else {
-			throw new BankException("unable to debut beyond minimum balance");
+			throw new BankException("unable to debit beyond minimum balance");
 		}
 		return success;
 	}
