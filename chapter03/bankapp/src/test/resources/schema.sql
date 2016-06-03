@@ -1,0 +1,1 @@
+CREATE TABLE account(accountID BIGINT,customerID BIGINT, accountDescription VARCHAR(100), accountBalance DECIMAL(10,2), accountMaxBalance DECIMAL(10,2));

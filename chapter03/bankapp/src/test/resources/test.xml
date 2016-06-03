@@ -1,54 +1,67 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jd="http://www.springframework.org/schema/jdbc"
 	xsi:schemaLocation="
 http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
-http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+http://www.springframework.org/schema/context/spring-context-3.0.xsd
+http://www.springframework.org/schema/jdbc
+http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
 
-	<context:component-scan base-package="spring.training.controller" />
+	<!--  autowire everything with annotations -->
+	<context:component-scan base-package="spring.training" />
+
+	<!-- BANK SERVICE BEANS -->
 
 	<bean id="name" class="spring.training.model.Name">
 		<property name="name" value="jock"></property>
 	</bean>
 
-	<!-- BANK SERVICE BEANS -->
+	<bean id="maxBalance" class="java.math.BigDecimal" scope="prototype">
+		<constructor-arg value="30"></constructor-arg>
+	</bean>
 
-	<bean id="bankService" class="spring.training.services.impl.BankServiceImpl">
-
+	<bean id="minBalance" class="java.math.BigDecimal" scope="prototype">
+		<constructor-arg value="0"></constructor-arg>
 	</bean>
 
 	<bean id="accountService" class="spring.training.services.impl.AccountServiceImpl">
 		<constructor-arg name="accounts">
 			<map>
-				<entry key="60000" value-ref="account_1" />
+				<entry key="60000">
+					<ref bean="account1" />
+				</entry>
+				<entry key="60001">
+					<ref bean="account2" />
+				</entry>
 			</map>
 		</constructor-arg>
 	</bean>
-
-	<bean id="account_1" class="spring.training.model.Account">
-		<constructor-arg name="accountDescription" value="joe_p" />
+ 
+	<bean id="account1" class="spring.training.model.Account">
 		<constructor-arg name="accountID" value="60000" />
 		<constructor-arg name="customerID" value="50000" />
-
+		<constructor-arg name="accountDescription" value="joe_p" />
 		<constructor-arg name="accountBalance">
 			<bean id="accBalance1" class="java.math.BigDecimal">
 				<constructor-arg value="15"></constructor-arg>
 			</bean>
 		</constructor-arg>
+		<constructor-arg name="accountMaxBalance" ref="maxBalance" />
+	</bean>
 
-		<constructor-arg name="accountMaxBalance">
-			<bean id="accMaxBalance1" class="java.math.BigDecimal">
-				<constructor-arg value="30"></constructor-arg>
+	<bean id="account2" class="spring.training.model.Account">
+		<constructor-arg name="accountID" value="60001" />
+		<constructor-arg name="customerID" value="50000" />
+		<constructor-arg name="accountDescription" value="joe_p" />
+		<constructor-arg name="accountBalance">
+			<bean id="accBalance2" class="java.math.BigDecimal">
+				<constructor-arg value="15"></constructor-arg>
 			</bean>
 		</constructor-arg>
-		<constructor-arg name="accountMinBalance">
-			<bean id="accMinBalance1" class="java.math.BigDecimal">
-				<constructor-arg value="0"></constructor-arg>
-			</bean>
-		</constructor-arg>
-
+		<constructor-arg name="accountMaxBalance" ref="maxBalance" />
 	</bean>
 
 	<bean id="user_1" class="spring.training.model.User" scope="prototype">
@@ -57,11 +70,21 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 		<constructor-arg name="password" value="super secret" />
 		<constructor-arg name="fullname" value="joe perry" />
 		<constructor-arg name="accounts">
-			<array value-type="spring.training.model.Account">
-				<ref bean="account_1" />
-			</array>
+			<list value-type="spring.training.model.Account">
+				<ref bean="account1" />
+			</list>
 		</constructor-arg>
 	</bean>
+	
+<!--  DATABASE STUFF -->
 
+<jd:embedded-database id="dataSource" type="HSQL">
+   <jd:script location="classpath:schema.sql"/>
+   <jd:script location="classpath:test-data.sql"/>
+ </jd:embedded-database>
+
+ <bean id="springJdbcTemplate"  class="org.springframework.jdbc.core.JdbcTemplate">
+  <property name="dataSource" ref="dataSource"/>
+ </bean>
 
 </beans>
