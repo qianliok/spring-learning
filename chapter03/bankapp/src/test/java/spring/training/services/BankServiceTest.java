@@ -46,13 +46,13 @@ public class BankServiceTest {
 		assertEquals( new BigDecimal( 2 ), x.getAccountTransactions().get( 0 ).getAmount() );
 	}
 
-	@Test
+	@Test (expected = BankException.class)
 	public void testCreditBad() throws BankException {
 		Account x = user.getAccounts().get( 0 );
 		assertFalse( "transaction success", bankService.credit( x, new BigDecimal( 50 ) ) );
 	}
 
-	@Test
+	@Test(expected = BankException.class)
 	public void testDebitBad() throws BankException {
 		Account x = user.getAccounts().get( 0 );
 		assertFalse( "transaction success", bankService.debit( x, new BigDecimal( 50 ) ) );
